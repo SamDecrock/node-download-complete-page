@@ -1,22 +1,29 @@
-var httpreq = require('httpreq');
 var pagedownloader = require('./pagedownloader');
 
 
-var pageurl = 'https://github.com/';
 
-httpreq.get(pageurl, function (err, res){
+
+// providing only the url:
+pagedownloader.download("https://github.com/", __dirname + '/github1', function (err, res){
+	if(err) return console.log(err.stack);
+
+	console.log(res);
+});
+
+// without callback
+pagedownloader.download("https://github.com/", __dirname + '/github2');
+
+
+
+
+
+
+// providing the content:
+pagedownloader.download("https://www.google.com/", '<html><img src="images/srpr/logo3w.png" /></html>',  __dirname + '/google1', function (err, res){
 	if(err) return console.log(err);
 
-
-	pagedownloader.download(
-		{
-			directory: __dirname + '/gittest',
-		 	content: res.body,
-		 	baseurl: pageurl
-		},
-		function (err, res){
-			console.log("done");
-		}
-	);
-
+	console.log(res);
 });
+
+// without callback:
+pagedownloader.download("https://www.google.com/", '<html><img src="images/srpr/logo3w.png" /></html>',  __dirname + '/google2');
