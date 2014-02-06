@@ -106,12 +106,19 @@ function download(o, callback){
 			// get all tags with a src attribute:
 			var tags = o.content.match(/<.+?src=[\"'].+?[\"'].+?>/g);
 
+			// get all tags with a css file
+			var tags2 = o.content.match(/<.+?text\/css.+?href=[\"'].+?[\"'].+?>/g)
+
+			tags = tags.concat(tags2);
+
 			if(!tags || !tags.length) return this(); // there are no tags: go to the next Step function
 
 			async.forEach(tags, function (tag, eachDone){
 				// get the content from src="":
 				var src = tag.match(/src=[\"'](.+?)[\"']/)[1];
-
+				if (src == null || src.length == 0) {
+					src = tag.match(/<.+?text\/css.+?href=[\"'](.+?)[\"'].+?>/g)[1];
+				}
 				// get the absolute url
 				var absoluteUrl = url.resolve(o.baseurl, src);
 
