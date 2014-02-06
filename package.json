@@ -1,7 +1,7 @@
 {
   "name": "pagedownloader",
   "description": "Node module to download a complete html webpage",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "name": "Sam Decrock",
     "url": "https://github.com/SamDecrock/"
@@ -14,6 +14,12 @@
     "url": "git://github.com/SamDecrock/node-download-complete-page.git"
   },
   "main": "./pagedownloader",
+  "contributors": [
+    {
+      "name": "hhuang",
+      "url": "https://github.com/hhuang"
+    }
+  ],
   "licenses": [
     {
       "type": "MIT",
